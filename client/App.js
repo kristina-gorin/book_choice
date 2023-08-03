@@ -32,26 +32,33 @@ function App(){
     return <div>
         book choice
         <Container>
-        {bookList.map((bookData, index) => (
-              <div key={index} className="col-md-4 mb-4">
-                <Card style={{ width: '18rem' }}>
-                  {bookData[`ISBN:${ISBNs[index]}`]?.cover?.large && (
-                    <Card.Img
-                      width='286'
-                      height='286'
-                      src={bookData[`ISBN:${ISBNs[index]}`].cover.large}
-                    />
-                  )}
-                  <Card.Body>
-                    <Card.Title>{bookData[`ISBN:${ISBNs[index]}`]?.title}</Card.Title>
-                    <Card.Text>
-                      {bookData[`ISBN:${ISBNs[index]}`]?.publish_date}
-                    </Card.Text>
-                    <Button>choose me</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            ))}
+         {bookList.map((bookData, index) => (
+            (index % 3 === 0) && (
+              <Row key={index} className="mb-4">
+                {[index, index + 1, index + 2].map((i) => (
+                  (i < bookList.length) && (
+                    <Col key={i} md={4}>
+                      <Card style={{ width: '18rem' }}>
+                        {bookList[i][`ISBN:${ISBNs[i]}`]?.cover?.large && (
+                          <Card.Img
+                            width='286'
+                            height='286'
+                            src={bookList[i][`ISBN:${ISBNs[i]}`].cover.large}
+                          />
+                        )}
+                        <Card.Body>
+                          <Card.Title>{bookList[i][`ISBN:${ISBNs[i]}`]?.title}</Card.Title>
+                          <Card.Text>
+                            {bookList[i][`ISBN:${ISBNs[i]}`]?.publish_date}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  )
+                ))}
+              </Row>
+            )
+          ))}
         </Container>
     </div>
 }

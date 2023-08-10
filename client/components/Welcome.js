@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
 
 
